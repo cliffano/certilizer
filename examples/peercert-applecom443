@@ -1,0 +1,26 @@
+{
+    "subject": (
+        (("commonName", "apple.com"),),
+        (("organizationName", "Apple Inc."),),
+        (("localityName", "Cupertino"),),
+        (("stateOrProvinceName", "California"),),
+        (("countryName", "US"),),
+        (("serialNumber", "C0806592"),),
+        (("jurisdictionStateOrProvinceName", "California"),),
+        (("jurisdictionCountryName", "US"),),
+        (("businessCategory", "Private Organization"),),
+    ),
+    "issuer": (
+        (("countryName", "US"),),
+        (("organizationName", "Apple Inc."),),
+        (("commonName", "Apple Public EV Server ECC CA 1 - G1"),),
+    ),
+    "version": 3,
+    "serialNumber": "0E8AAA2BDAE0D2588F9D911AC3D2482E",
+    "notBefore": "May  3 20:15:16 2023 GMT",
+    "notAfter": "Oct 30 20:25:16 2023 GMT",
+    "subjectAltName": (("DNS", "apple.com"),),
+    "OCSP": ("http://ocsp.apple.com/ocsp03-apevsecc1g101",),
+    "caIssuers": ("http://certs.apple.com/apevsecc1g1.der",),
+    "crlDistributionPoints": ("http://crl.apple.com/apevsecc1g1.crl",),
+}

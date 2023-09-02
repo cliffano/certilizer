@@ -1,0 +1,8 @@
+---
+endpoints:
+  - host: apple.com
+    port: 443
+  - host: google.com
+    port: 443
+  - host: microsoft.com
+    port: 443

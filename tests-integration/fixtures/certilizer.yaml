@@ -1,0 +1,17 @@
+---
+endpoints:
+  - name: Google
+    host: google.com
+    port: 443
+  - name: Apple
+    host: apple.com
+    port: 443
+  - name: Twitter
+    host: twitter.com
+    port: 443
+  - name: Facebook
+    host: facebook.com
+    port: 443
+  - name: Nvidia
+    host: nvidia.com
+    port: 443
