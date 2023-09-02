@@ -6,7 +6,7 @@
 <br/>
 
 Certilizer
--------
+----------
 
 Certilizer is a Python CLI for generating report of SSL certificates from multiple endpoints specified in a YAML configuration.
 
