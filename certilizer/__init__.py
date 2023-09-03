@@ -1,3 +1,4 @@
+# pylint: disable=too-many-locals,broad-exception-caught
 """
 certilizer
 ==========
@@ -30,15 +31,21 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
     conf = load_config(conf_file)
 
     data = {
-        'Endpoint' : [],
+        'Endpoint': [],
         'Serial Number': [],
-        'Common Name' : [],
+        'Common Name': [],
         'Alternative Names': [],
-        'Issuer' : [],
-        'Expiry Date' : [],
-        'OCSP' : [],
-        'CA Issuer' : [],
-        'CRL Dist Points' : []
+        'Issuer': [],
+        'Expiry Date': [],
+        'OCSP': [],
+        'CA Issuer': [],
+        'CRL Dist Points': []
+    }
+
+    error_data = {
+        'Name': [],
+        'Endpoint': [],
+        'Error': []
     }
 
     for endpoint in conf['endpoints']:
@@ -48,24 +55,37 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
 
         logger.info(f'Retrieving certificate from endpoint {host}:{port} ...')
 
-        with socket.create_connection((host, port)) as sock:
-            with context.wrap_socket(sock, server_hostname=host) as ssock:
+        try:
 
-                peer_cert = ssock.getpeercert()
-                cert = Cert(peer_cert)
+            with socket.create_connection((host, port)) as sock:
+                with context.wrap_socket(sock, server_hostname=host) as ssock:
 
-                data['Endpoint'].append(f'{host}:{port}')
-                data['Serial Number'].append(cert.get_serial_number())
-                data['Common Name'].append(cert.get_common_name())
-                data['Alternative Names'].append(cert.get_alternative_names()[:20])
-                data['Issuer'].append(cert.get_issuer())
-                data['Expiry Date'].append(cert.get_expiry_date())
-                data['OCSP'].append(cert.get_ocsp()[:20])
-                data['CA Issuer'].append(cert.get_ca_issuer()[:20])
-                data['CRL Dist Points'].append(cert.get_crl_dist_points()[:20])
+                    peer_cert = ssock.getpeercert()
+                    cert = Cert(peer_cert)
+
+                    data['Endpoint'].append(f'{host}:{port}')
+                    data['Serial Number'].append(cert.get_serial_number())
+                    data['Common Name'].append(cert.get_common_name())
+                    data['Alternative Names'].append(cert.get_alternative_names()[:20])
+                    data['Issuer'].append(cert.get_issuer())
+                    data['Expiry Date'].append(cert.get_expiry_date())
+                    data['OCSP'].append(cert.get_ocsp()[:20])
+                    data['CA Issuer'].append(cert.get_ca_issuer()[:20])
+                    data['CRL Dist Points'].append(cert.get_crl_dist_points()[:20])
+
+        except KeyboardInterrupt:
+            logger.info('Keyboard interrupt detected')
+
+        except Exception as exception:
+            error_data['Name'].append(endpoint['name'])
+            error_data['Endpoint'].append(f'{host}:{port}')
+            error_data['Error'].append(str(exception))
 
     logger.info(f'Generating report using {out_format} format...')
-    Reporter(out_format, out_file).write(data)
+    reporter = Reporter(out_format, out_file)
+    reporter.write_cert(data)
+    if error_data['Name']:
+        reporter.write_error(error_data)
 
 @click.command()
 @click.option('--conf-file', default='certilizer.yaml', help='Configuration file path')

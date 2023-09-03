@@ -1,8 +1,26 @@
 ---
 endpoints:
-  - host: apple.com
+  - name: Google
+    host: google.com
     port: 443
-  - host: google.com
+  - name: Apple
+    host: apple.com
     port: 443
-  - host: microsoft.com
+  - name: Twitter
+    host: twitter.com
+    port: 443
+  - name: Facebook
+    host: facebook.com
+    port: 443
+  - name: Nvidia
+    host: nvidia.com
+    port: 443
+  - name: Microsoft
+    host: microsoft.com
+    port: 443
+  - name: Amazon
+    host: amazon.com
+    port: 443
+  - name: someinexisting.website
+    host: someinexisting.website
     port: 443

@@ -15,3 +15,12 @@ endpoints:
   - name: Nvidia
     host: nvidia.com
     port: 443
+  - name: Microsoft
+    host: microsoft.com
+    port: 443
+  - name: Amazon
+    host: amazon.com
+    port: 443
+  - name: someinexisting.website
+    host: someinexisting.website
+    port: 443
