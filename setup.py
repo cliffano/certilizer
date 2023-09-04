@@ -39,6 +39,7 @@ setuptools.setup(
         'click==8.1.3',
         'conflog==1.5.1',
         'pandas==2.0.3',
-        'PyYAML==6.0.1'
+        'PyYAML==6.0.1',
+        'tabulate==0.9.0'
     ],
 )

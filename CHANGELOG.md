@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix missing tabulate dependency
+
 ## 0.10.2 - 2023-09-04
 ### Fixed
 - Reflect 0.10.1 fix in setup.py
