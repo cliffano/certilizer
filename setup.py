@@ -37,8 +37,8 @@ setuptools.setup(
     python_requires='>=3.8',
     install_requires=[
         'click==8.1.3',
-        'conflog==1.4.0',
+        'conflog==1.5.1',
         'pandas==2.0.3',
-        'PyYAML==6.0'
+        'PyYAML==6.0.1'
     ],
 )
