@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add log message for error during certificate retrieval
+
 ## 0.10.3 - 2023-09-04
 ### Fixed
 - Fix missing tabulate dependency

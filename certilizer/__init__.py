@@ -77,6 +77,7 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
             logger.info('Keyboard interrupt detected')
 
         except Exception as exception:
+            logger.error(f'An error occurred: {exception}')
             error_data['Name'].append(endpoint['name'])
             error_data['Endpoint'].append(f'{host}:{port}')
             error_data['Error'].append(str(exception))
