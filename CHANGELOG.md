@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Hide index from report output tables
 
+### Fixed
+- Fix error report generation when output file is not on current working directory
+
 ## 0.10.3 - 2023-09-04
 ### Fixed
 - Fix missing tabulate dependency

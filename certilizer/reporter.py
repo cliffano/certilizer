@@ -1,6 +1,7 @@
 """A module for reporting the certificate details
 depending on output configurations.
 """
+import os
 from tabulate import tabulate
 import pandas as pd
 
@@ -34,7 +35,6 @@ class Reporter():
         """Write the errors to the output file or stdout."""
 
         data_frame = pd.DataFrame(cert_data).sort_values(by=['Expiry Date'])
-        # pd.set_option('max_colwidth', 20)
         output = tabulate(
             data_frame,
             showindex=False,
@@ -52,7 +52,6 @@ class Reporter():
         """Write the errors to the output file or stdout."""
 
         data_frame = pd.DataFrame(error_data)
-        # pd.set_option('max_colwidth', 20)
         output = tabulate(
             data_frame,
             showindex=False,
@@ -61,7 +60,9 @@ class Reporter():
         )
 
         if self.out_file:
-            with open(f'errors-{self.out_file}', 'w', encoding='utf-8') as (stream):
+            head, tail = os.path.split(self.out_file)
+            tail = f'error-{tail}'
+            with open(os.path.join(head, tail), 'w', encoding='utf-8') as (stream):
                 stream.write(output)
         else:
             print(output)
