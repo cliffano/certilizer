@@ -14,23 +14,6 @@ class Reporter():
         self.out_format = out_format
         self.out_file = out_file
 
-    def write_report(self, data: list) -> None:
-        """Write the certificates report to the output file or stdout."""
-
-        data_frame = pd.DataFrame(data).sort_values(by=['Expiry Date'])
-        # pd.set_option('max_colwidth', 20)
-        output = tabulate(
-            data_frame,
-            headers='keys',
-            tablefmt=self.out_format
-        )
-
-        if self.out_file:
-            with open(self.out_file, 'w', encoding='utf-8') as (stream):
-                stream.write(output)
-        else:
-            print(output)
-
     def write_cert(self, cert_data: list) -> None:
         """Write the errors to the output file or stdout."""
 
@@ -42,9 +25,12 @@ class Reporter():
             tablefmt=self.out_format
         )
 
+        if self.out_format == 'html':
+            output = self._html(output)
+
         if self.out_file:
             with open(self.out_file, 'w', encoding='utf-8') as (stream):
-                stream.write(self._html(output))
+                stream.write(output)
         else:
             print(output)
 
@@ -59,17 +45,22 @@ class Reporter():
             tablefmt=self.out_format
         )
 
+        if self.out_format == 'html':
+            output = self._html(output)
+
         if self.out_file:
             head, tail = os.path.split(self.out_file)
             tail = f'error-{tail}'
             with open(os.path.join(head, tail), 'w', encoding='utf-8') as (stream):
-                stream.write(self._html(output))
+                stream.write(output)
         else:
             print(output)
-    
+
     def _html(self, table) -> str:
         """Return the complete HTML page with the table as content."""
-        table = table.replace('<table>', '<table class="table table-striped table-bordered table-hover">')
+
+        table = table.replace(
+            '<table>', '<table class="table table-striped table-bordered table-hover">')
         table = table.replace('<th>', '<th class="text-center table-dark">')
         return f'<html>\
             <head>\
