@@ -44,7 +44,7 @@ class Reporter():
 
         if self.out_file:
             with open(self.out_file, 'w', encoding='utf-8') as (stream):
-                stream.write(output)
+                stream.write(self._html(output))
         else:
             print(output)
 
@@ -63,6 +63,20 @@ class Reporter():
             head, tail = os.path.split(self.out_file)
             tail = f'error-{tail}'
             with open(os.path.join(head, tail), 'w', encoding='utf-8') as (stream):
-                stream.write(output)
+                stream.write(self._html(output))
         else:
             print(output)
+    
+    def _html(self, table) -> str:
+        """Return the complete HTML page with the table as content."""
+        table = table.replace('<table>', '<table class="table table-striped table-bordered table-hover">')
+        table = table.replace('<th>', '<th class="text-center table-dark">')
+        return f'<html>\
+            <head>\
+            <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">\
+            <meta name="generator" content="Certilizer">\
+            </head>\
+            <body>\
+            {table}\
+            </body>\
+            </html>'
