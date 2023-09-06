@@ -30,10 +30,10 @@ class Reporter():
         else:
             print(output)
 
-    def write_cert(self, data: list) -> None:
+    def write_cert(self, cert_data: list) -> None:
         """Write the errors to the output file or stdout."""
 
-        data_frame = pd.DataFrame(data).sort_values(by=['Expiry Date'])
+        data_frame = pd.DataFrame(cert_data).sort_values(by=['Expiry Date'])
         # pd.set_option('max_colwidth', 20)
         output = tabulate(
             data_frame,

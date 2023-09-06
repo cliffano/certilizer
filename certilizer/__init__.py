@@ -30,7 +30,8 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
     logger.info(f'Loading configuration file {conf_file}...')
     conf = load_config(conf_file)
 
-    data = {
+    cert_data = {
+        'Name': [],
         'Endpoint': [],
         'Serial Number': [],
         'Common Name': [],
@@ -63,15 +64,16 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
                     peer_cert = ssock.getpeercert()
                     cert = Cert(peer_cert)
 
-                    data['Endpoint'].append(f'{host}:{port}')
-                    data['Serial Number'].append(cert.get_serial_number())
-                    data['Common Name'].append(cert.get_common_name())
-                    data['Alternative Names'].append(cert.get_alternative_names()[:20])
-                    data['Issuer'].append(cert.get_issuer())
-                    data['Expiry Date'].append(cert.get_expiry_date())
-                    data['OCSP'].append(cert.get_ocsp()[:20])
-                    data['CA Issuer'].append(cert.get_ca_issuer()[:20])
-                    data['CRL Dist Points'].append(cert.get_crl_dist_points()[:20])
+                    cert_data['Name'].append(endpoint['name'])
+                    cert_data['Endpoint'].append(f'{host}:{port}')
+                    cert_data['Serial Number'].append(cert.get_serial_number())
+                    cert_data['Common Name'].append(cert.get_common_name())
+                    cert_data['Alternative Names'].append(cert.get_alternative_names()[:20])
+                    cert_data['Issuer'].append(cert.get_issuer())
+                    cert_data['Expiry Date'].append(cert.get_expiry_date())
+                    cert_data['OCSP'].append(cert.get_ocsp()[:20])
+                    cert_data['CA Issuer'].append(cert.get_ca_issuer()[:20])
+                    cert_data['CRL Dist Points'].append(cert.get_crl_dist_points()[:20])
 
         except KeyboardInterrupt:
             logger.info('Keyboard interrupt detected')
@@ -84,7 +86,7 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
 
     logger.info(f'Generating report using {out_format} format...')
     reporter = Reporter(out_format, out_file)
-    reporter.write_cert(data)
+    reporter.write_cert(cert_data)
     if error_data['Name']:
         reporter.write_error(error_data)
 
