@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add message logging for error during certificate retrieval
 - Add name field to certificate report
 
+### Removed
+- Hide index from report output tables
+
 ## 0.10.3 - 2023-09-04
 ### Fixed
 - Fix missing tabulate dependency

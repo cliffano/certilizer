@@ -37,6 +37,7 @@ class Reporter():
         # pd.set_option('max_colwidth', 20)
         output = tabulate(
             data_frame,
+            showindex=False,
             headers='keys',
             tablefmt=self.out_format
         )
@@ -54,6 +55,7 @@ class Reporter():
         # pd.set_option('max_colwidth', 20)
         output = tabulate(
             data_frame,
+            showindex=False,
             headers='keys',
             tablefmt=self.out_format
         )
