@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add message logging for error during certificate retrieval
 - Add name field to certificate report
+- Add --max-col-size flag to limit column size in report output
 
 ### Removed
 - Hide index from report output tables

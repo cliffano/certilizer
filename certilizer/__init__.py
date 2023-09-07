@@ -17,7 +17,7 @@ from .config import load as load_config
 from .logger import init
 from .reporter import Reporter
 
-def run(conf_file: str, out_format: str, out_file: str) -> None:
+def run(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> None:
     """Run Certiliser by:
     - Loading configuration file
     - Retrieving certificate from each endpoint
@@ -68,12 +68,12 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
                     cert_data['Endpoint'].append(f'{host}:{port}')
                     cert_data['Serial Number'].append(cert.get_serial_number())
                     cert_data['Common Name'].append(cert.get_common_name())
-                    cert_data['Alternative Names'].append(cert.get_alternative_names()[:20])
+                    cert_data['Alternative Names'].append(cert.get_alternative_names())
                     cert_data['Issuer'].append(cert.get_issuer())
                     cert_data['Expiry Date'].append(cert.get_expiry_date())
-                    cert_data['OCSP'].append(cert.get_ocsp()[:20])
-                    cert_data['CA Issuer'].append(cert.get_ca_issuer()[:20])
-                    cert_data['CRL Dist Points'].append(cert.get_crl_dist_points()[:20])
+                    cert_data['OCSP'].append(cert.get_ocsp())
+                    cert_data['CA Issuer'].append(cert.get_ca_issuer())
+                    cert_data['CRL Dist Points'].append(cert.get_crl_dist_points())
 
         except KeyboardInterrupt:
             logger.info('Keyboard interrupt detected')
@@ -85,7 +85,7 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
             error_data['Error'].append(str(exception))
 
     logger.info(f'Generating report using {out_format} format...')
-    reporter = Reporter(out_format, out_file)
+    reporter = Reporter(out_format, out_file, max_col_size)
     reporter.write_cert(cert_data)
     if error_data['Name']:
         reporter.write_error(error_data)
@@ -95,8 +95,9 @@ def run(conf_file: str, out_format: str, out_file: str) -> None:
 @click.option('--out-format', default='simple', help='Output format, based on table format \
               supported by Tabulate https://pypi.org/project/tabulate/')
 @click.option('--out-file', help='When specified, output will be written to this file')
-def cli(conf_file: str, out_format: str, out_file: str) -> None:
+@click.option('--max-col-size', default=100, help='Maximum number of characters per column')
+def cli(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> None:
     """CLI tool for generating report of SSL/TLS certificates from a list of endpoints defined
     in a YAML configuration file.
     """
-    run(conf_file, out_format, out_file)
+    run(conf_file, out_format, out_file, max_col_size)
