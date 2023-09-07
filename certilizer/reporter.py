@@ -24,7 +24,8 @@ class Reporter():
         data_frame = pd.DataFrame(cert_data).sort_values(by=['Expiry Date'])
 
         if self.max_col_size:
-            data_frame = data_frame.applymap(lambda x: x[0:self.max_col_size] if isinstance(x, str) else x)
+            data_frame = data_frame.applymap(
+                lambda x: x[0:self.max_col_size] if isinstance(x, str) else x)
 
         output = tabulate(
             data_frame,
@@ -48,7 +49,8 @@ class Reporter():
         data_frame = pd.DataFrame(error_data)
 
         if self.max_col_size:
-            data_frame = data_frame.applymap(lambda x: x[0:self.max_col_size] if isinstance(x, str) else x)
+            data_frame = data_frame.applymap(
+                lambda x: x[0:self.max_col_size] if isinstance(x, str) else x)
 
         output = tabulate(
             data_frame,
