@@ -93,11 +93,11 @@ def run(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> No
 @click.command()
 @click.option('--conf-file', default='certilizer.yaml', help='Configuration file path')
 @click.option('--out-format', default='simple', help='Output format, based on table format \
-              supported by Tabulate https://pypi.org/project/tabulate/')
+              supported by python-tabulate https://github.com/astanin/python-tabulate#table-format')
 @click.option('--out-file', help='When specified, output will be written to this file')
 @click.option('--max-col-size', default=100, help='Maximum number of characters per column')
 def cli(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> None:
-    """CLI tool for generating report of SSL/TLS certificates from a list of endpoints defined
-    in a YAML configuration file.
+    """Python CLI for generating report of SSL/TLS certificates from multiple endpoints
+    specified in a YAML configuration.
     """
     run(conf_file, out_format, out_file, max_col_size)
