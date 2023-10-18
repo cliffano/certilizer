@@ -21,9 +21,9 @@ classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent"
 ]
-
-[tool.poetry.packages]
-include = "certilizer"
+packages = [
+  { include = "certilizer" }
+]
 
 [tool.poetry.scripts]
 certilizer = "certilizer:cli"
