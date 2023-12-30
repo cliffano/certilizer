@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Use Poetry to manage project
 - Switch dependency versioning to allow compatible with version
+- Use PieMaker for Makefile build
 
 ## 0.12.0 - 2023-09-07
 ### Added
