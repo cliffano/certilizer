@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.1.0
+PIEMAKER_VERSION = 1.9.0
 
 ################################################################
 # User configuration variables
@@ -27,14 +27,15 @@ $(info - Package name: ${PACKAGE_NAME})
 $(info - Author: ${AUTHOR})
 
 export POETRY_HOME := /opt/poetry
-export VIRTUAL_ENV := /opt/poetry-venv
+export VIRTUAL_ENV := .venv
 export PATH := ${VIRTUAL_ENV}/bin:${POETRY_HOME}/bin:$(PATH)
 
 ################################################################
 # Base targets
 
 # CI target to be executed by CI/CD tool
-ci: clean deps lint test coverage complexity doc package reinstall test-integration
+all:ci
+ci: clean deps style lint test coverage complexity doc package reinstall test-integration
 
 # Ensure stage directory exists
 stage:
@@ -46,20 +47,35 @@ clean:
 
 # Retrieve the Pyhon package dependencies
 deps:
-	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install poetry --ignore-installed
+	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry==1.8.5 --ignore-installed
 	python3 -m venv ${VIRTUAL_ENV} && PATH=${POETRY_HOME}/bin/:$$PATH poetry install --no-root --compile
+	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry-plugin-up==0.8.0 --ignore-installed
+
+deps-upgrade:
+	poetry up --latest
 
 deps-extra-apt:
 	apt-get update
 	apt-get install -y python3-venv
+	apt-get install -y python3-sphinx # needed by sphinx-apidoc
 
-# Update Makefile to the latest version on origin's main branch
-update-to-latest:
+# Update Makefile to the latest version tag
+update-to-latest: TARGET_PIEMAKER_VERSION = $(shell curl -s https://api.github.com/repos/cliffano/piemaker/tags | jq -r '.[0].name')
+update-to-latest: update-to-version
+
+# Update Makefile to the main branch
+update-to-main:
 	curl https://raw.githubusercontent.com/cliffano/piemaker/main/src/Makefile-piemaker -o Makefile
 
 # Update Makefile to the version defined in TARGET_PIEMAKER_VERSION parameter
 update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/piemaker/$(TARGET_PIEMAKER_VERSION)/src/Makefile-piemaker -o Makefile
+
+################################################################
+# Formatting targets
+
+style:
+	black $(PACKAGE_NAME) tests tests-integration examples
 
 ################################################################
 # Testing targets
@@ -86,8 +102,9 @@ test-integration:
 	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
 
 test-examples:
-	for f in examples/*.sh; do \
-	  bash "$$f"; \
+	cd examples && \
+	for f in *.sh; do \
+	  bash -x "$$f"; \
 	done
 
 coverage:
@@ -95,7 +112,7 @@ coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./$(PACKAGE_NAME) -m unittest discover -s tests
 	coverage combine
 	coverage report
-	coverage html
+	coverage html && rm -f docs/coverage/coverage/.gitignore
 
 ################################################################
 # Release targets
@@ -118,6 +135,9 @@ package:
 install: package
 	poetry install
 
+install-wheel: package
+	pip3 install dist/$(PACKAGE_NAME)-*.whl
+
 uninstall:
 	pip3 uninstall $(PACKAGE_NAME) -y || echo "Nothing to uninstall..."
 
@@ -138,4 +158,4 @@ doc: stage
 
 ################################################################
 
-.PHONY: all ci clean stage deps deps-extra doc release lint complexity test test-integration test-examples coverage install uninstall reinstall package publish
+.PHONY: all ci clean complexity configurations coverage deps deps-extra-apt deps-upgrade doc export export export install install-wheel lint name package package publish reinstall release-major release-minor release-patch stage style test test-examples test-integration uninstall update-to-latest update-to-latest update-to-main update-to-version
