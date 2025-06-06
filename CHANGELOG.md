@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switch dependency versioning to allow compatible with version
 - Use PieMaker for Makefile build
 
+### Removed
+- Remove Python 3.8 support
+
 ## 0.12.0 - 2023-09-07
 ### Added
 - Add --max-col-size flag to limit column size in report output
