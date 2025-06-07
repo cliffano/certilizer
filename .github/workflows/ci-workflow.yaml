@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - run: sudo make deps-extra-apt
       - run: make ci
       - uses: peaceiris/actions-gh-pages@v4
         with:
