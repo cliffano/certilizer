@@ -12,14 +12,6 @@ certilizer.cert module
    :undoc-members:
    :show-inheritance:
 
-certilizer.config module
-------------------------
-
-.. automodule:: certilizer.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 certilizer.logger module
 ------------------------
 
