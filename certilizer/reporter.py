@@ -14,11 +14,18 @@ from dominate.util import raw
 class Reporter:
     """A class for producing certificate details report."""
 
-    def __init__(self, out_format: str, out_file: str, max_col_size: int) -> None:
+    def __init__(
+        self,
+        out_format: str,
+        out_file: str,
+        max_col_size: int,
+        expiry_threshold_in_days: int,
+    ) -> None:
         """Initialise the Reporter object."""
         self.out_format = out_format
         self.out_file = out_file
         self.max_col_size = max_col_size
+        self.expiry_threshold_in_days = expiry_threshold_in_days
 
     def write_cert(self, cert_data: list) -> None:
         """Write the errors to the output file or stdout."""
@@ -32,10 +39,10 @@ class Reporter:
 
         def _colour_rows_styler(row):
             today = pd.Timestamp.today()
-            warning_date = today + pd.DateOffset(days=90)
+            threshold_date = today + pd.DateOffset(days=self.expiry_threshold_in_days)
             if row["Expiry Date"] <= today:
                 style = ["background-color: LightPink"] * len(row)
-            elif row["Expiry Date"] <= warning_date:
+            elif row["Expiry Date"] <= threshold_date:
                 style = ["background-color: LightYellow"] * len(row)
             else:
                 style = ["background-color: LightGreen"] * len(row)

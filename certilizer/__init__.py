@@ -18,7 +18,13 @@ from .logger import init
 from .reporter import Reporter
 
 
-def run(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> None:
+def run(
+    conf_file: str,
+    out_format: str,
+    out_file: str,
+    max_col_size: int,
+    expiry_threshold_in_days: int,
+) -> None:
     """Run Certiliser by:
     - Loading configuration file
     - Retrieving certificate from each endpoint
@@ -83,7 +89,7 @@ def run(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> No
             error_data["Error"].append(str(exception))
 
     logger.info(f"Generating report using {out_format} format...")
-    reporter = Reporter(out_format, out_file, max_col_size)
+    reporter = Reporter(out_format, out_file, max_col_size, expiry_threshold_in_days)
     reporter.write_cert(cert_data)
     if error_data["Name"]:
         reporter.write_error(error_data)
@@ -101,8 +107,19 @@ def run(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> No
 @click.option(
     "--max-col-size", default=100, help="Maximum number of characters per column"
 )
-def cli(conf_file: str, out_format: str, out_file: str, max_col_size: int) -> None:
+@click.option(
+    "--expiry-threshold-in-days",
+    default=90,
+    help="Number of days before certificate expiry to highlight in report",
+)
+def cli(
+    conf_file: str,
+    out_format: str,
+    out_file: str,
+    max_col_size: int,
+    expiry_threshold_in_days: int,
+) -> None:
     """Python CLI for generating report of SSL/TLS certificates from multiple endpoints
     specified in a YAML configuration.
     """
-    run(conf_file, out_format, out_file, max_col_size)
+    run(conf_file, out_format, out_file, max_col_size, expiry_threshold_in_days)

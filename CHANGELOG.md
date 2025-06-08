@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add Python 3.12 support
 - Add colour-coded row background based on cert expiry date #1
+- Add CLI arg --expiry-threshold-in-days #3
 
 ### Changed
 - Use Poetry to manage project
