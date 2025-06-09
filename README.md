@@ -11,7 +11,13 @@ Certilizer
 
 Certilizer is a Python CLI for generating report of SSL/TLS certificates from multiple endpoints specified in a YAML configuration.
 
+Certificates which will expire within N days (default 90 days, configurable via `--expiry-threshold-in-days` flag) will be highlighted in yellow. Expired certificates will be shown in red. And remaining certificates are shown in green.
+
 ![Screenshot of certificate report in HTML format](/screenshots/cert-report-html.png "Certificate report in HTML format")
+
+Any error with certificates inspection will be included in an error report and highlighted in red.
+
+![Screenshot of error report in HTML format](/screenshots/error-report-html.png "Error report in HTML format")
 
 Installation
 ------------
@@ -46,7 +52,7 @@ Create a configuration file, e.g. `certilizer.yaml`:
       - name: Amazon
         host: amazon.com
         port: 443
-      - name: someinexisting.website
+      - name: Inexisting
         host: someinexisting.website
         port: 443
  
@@ -90,6 +96,10 @@ Alternatively, the report format can be customised using `--out-format` flag, an
 The available formats are documented on [python-tabulate Table Format](https://github.com/astanin/python-tabulate#table-format) page. By default, it uses `simple_grid`.
 
 If the `--out-file` arg is not provided, the report will be written to stdout.
+
+The threshold for expiry date can be configured using `--expiry-threshold-in-days` flag. By default, this is set to 90 days.
+
+The column size can be set via `--max-col-size` flag which will determine how many characters will be included for each of the column values.
 
 Configuration
 -------------
