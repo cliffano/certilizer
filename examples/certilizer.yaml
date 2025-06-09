@@ -21,6 +21,6 @@ endpoints:
   - name: Amazon
     host: amazon.com
     port: 443
-  - name: someinexisting.website
+  - name: Inexisting
     host: someinexisting.website
     port: 443
