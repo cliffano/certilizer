@@ -11,6 +11,10 @@ printf "Show help guide: certilizer --help\n"
 certilizer --help
 
 printf "\n\n========================================\n"
+printf "Show version info: certilizer --version\n"
+certilizer --version
+
+printf "\n\n========================================\n"
 printf "Run command with default config file: certilizer\n"
 certilizer
 

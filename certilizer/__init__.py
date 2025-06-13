@@ -112,6 +112,7 @@ def run(
     default=90,
     help="Number of days before certificate expiry to highlight in report",
 )
+@click.version_option(package_name="certilizer", prog_name="certilizer")
 def cli(
     conf_file: str,
     out_format: str,
