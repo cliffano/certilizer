@@ -126,3 +126,7 @@ Build reports:
 * [Test coverage report](https://cliffano.github.io/certilizer/coverage/coverage/index.html)
 * [Integration tests report](https://cliffano.github.io/certilizer/test-integration/pytest/index.html)
 * [API Documentation](https://cliffano.github.io/certilizer/doc/sphinx/index.html)
+
+Related projects:
+
+* [Packer Certilizer](https://github.com/cliffano/packer-certilizer)
