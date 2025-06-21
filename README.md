@@ -129,4 +129,4 @@ Build reports:
 
 Related projects:
 
-* [Packer Certilizer](https://github.com/cliffano/packer-certilizer)
+* [Packer Certilizer](https://github.com/cliffano/packer-certilizer) - Packer builder of machine image for running Certilizer SSL/TLS certificates reporting tool
