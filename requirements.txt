@@ -22,7 +22,7 @@ keyring==25.6.0 ; python_version >= "3.10" and python_version < "4.0" and platfo
 markdown-it-py==4.0.0 ; python_version >= "3.10" and python_version < "4.0"
 markupsafe==3.0.2 ; python_version >= "3.10" and python_version < "4.0"
 mdurl==0.1.2 ; python_version >= "3.10" and python_version < "4.0"
-more-itertools==10.7.0 ; python_version >= "3.10" and python_version < "4.0" and platform_machine != "ppc64le" and platform_machine != "s390x"
+more-itertools==10.8.0 ; python_version >= "3.10" and python_version < "4.0" and platform_machine != "ppc64le" and platform_machine != "s390x"
 mypy-extensions==1.1.0 ; python_version >= "3.10" and python_version < "4.0"
 nh3==0.3.0 ; python_version >= "3.10" and python_version < "4.0"
 numpy==1.26.4 ; python_version >= "3.10" and python_version < "4.0"
