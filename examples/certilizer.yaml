@@ -6,9 +6,9 @@ endpoints:
   - name: Apple
     host: apple.com
     port: 443
-  - name: Twitter
-    host: twitter.com
-    port: 443
+  # - name: X
+  #   host: x.com
+  #   port: 443
   - name: Facebook
     host: facebook.com
     port: 443
