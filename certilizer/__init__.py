@@ -33,6 +33,7 @@ def run(
 
     logger = init()
     context = ssl.create_default_context()
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
 
     logger.info(f"Loading configuration file {conf_file}...")
     cfgrw = CFGRW(conf_file=conf_file)
