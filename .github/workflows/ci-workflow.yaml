@@ -8,9 +8,7 @@ jobs:
       max-parallel: 1
       matrix:
         # Available Python versions: https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-        # TODO: Python 3.10 and 3.11 are temporarily disabled until Wily is modified to not check stash
-        # python: [ '3.10', '3.11', '3.12', '3.13' ]
-        python: [ '3.12', '3.13' ]
+        python: [ '3.10', '3.11', '3.12', '3.13' ]
     name: python ${{ matrix.python }}
     steps:
       - uses: actions/checkout@v4
