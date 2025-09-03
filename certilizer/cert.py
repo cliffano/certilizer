@@ -91,7 +91,11 @@ class Cert:
         returned as a comma-separated string.
         """
 
-        ocsp = ", ".join(self.peer_cert["OCSP"])
+        # print(self.peer_cert["OCSP"])
+        if "OCSP" in self.peer_cert:
+            ocsp = ", ".join(self.peer_cert["OCSP"])
+        else:
+            ocsp = ""
 
         return ocsp
 
