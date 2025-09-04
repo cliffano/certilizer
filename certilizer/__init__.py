@@ -58,12 +58,21 @@ def run(
 
         host = endpoint["host"]
         port = endpoint["port"]
+        ssl_verify = endpoint.get("ssl_verify", True)
 
         logger.info(f"Retrieving certificate from endpoint {host}:{port} ...")
 
         try:
 
             with socket.create_connection((host, port)) as sock:
+
+                if ssl_verify:
+                    context.check_hostname = True
+                    context.verify_mode = ssl.CERT_REQUIRED
+                else:
+                    context.check_hostname = False
+                    context.verify_mode = ssl.CERT_NONE
+
                 with context.wrap_socket(sock, server_hostname=host) as ssock:
 
                     peer_cert = ssock.getpeercert()

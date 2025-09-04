@@ -56,6 +56,10 @@ Create a configuration file, e.g. `certilizer.yaml`:
       - name: Inexisting
         host: someinexisting.website
         port: 443
+      - name: Expired
+        host: someexpired.website
+        port: 443
+        ssl_verify: false
  
 And then run `certilizer` CLI and pass the configuration file path:
 
@@ -73,6 +77,8 @@ It will write the log messages to stdout:
     [certilizer] INFO Retrieving certificate from endpoint amazon.com:443 ...
     [certilizer] INFO Retrieving certificate from endpoint someinexisting.website:443 ...
     [certilizer] ERROR An error occurred: [Errno -2] Name or service not known
+    [certilizer] INFO Retrieving certificate from endpoint someexpired.website:443 ...
+    [certilizer] ERROR An error occurred: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid
     [certilizer] INFO Generating report using simple format...
 
 By default, the certificate and error reports are written to stdout:
@@ -113,6 +119,7 @@ Configuration properties that should be added to the YAML configuration file:
 | `endpoints[].name` | String | The name of the endpoint. | `443` |
 | `endpoints[].host` | String | The cert endpoint host name. | `apple.com` |
 | `endpoints[].port` | Int | The cert endpoint port number. | `443` |
+| `endpoints[].ssl_verify` | String | Verify SSL when set to true. | `true` |
 
 Colophon
 --------

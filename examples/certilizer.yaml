@@ -24,3 +24,7 @@ endpoints:
   - name: Inexisting
     host: someinexisting.website
     port: 443
+  - name: Expired
+    host: someexpired.website
+    port: 443
+    ssl_verify: false
