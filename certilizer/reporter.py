@@ -3,12 +3,9 @@ depending on output configurations.
 """
 
 import os
-import re
 import pandas as pd
-from tabulate import tabulate
-from dominate import document
-from dominate.tags import meta, link
-from dominate.util import raw
+from .formatters.html import format_report as format_html
+from .formatters.text import format_report as format_text
 
 
 class Reporter:
@@ -49,9 +46,9 @@ class Reporter:
             return style
 
         if self.out_format == "html":
-            output = self._html(data_frame, _colour_rows_styler)
+            output = format_html(data_frame, _colour_rows_styler)
         else:
-            output = self._text(data_frame)
+            output = format_text(data_frame)
 
         self._write_output(output)
 
@@ -69,9 +66,9 @@ class Reporter:
             return ["background-color: LightPink"] * len(row)
 
         if self.out_format == "html":
-            output = self._html(data_frame, _colour_rows_styler)
+            output = format_html(data_frame, _colour_rows_styler)
         else:
-            output = self._text(data_frame)
+            output = format_text(data_frame)
 
         if self.out_file:
             head, tail = os.path.split(self.out_file)
@@ -79,32 +76,6 @@ class Reporter:
             self.out_file = os.path.join(head, tail)
 
         self._write_output(output)
-
-    def _html(self, data_frame, colour_rows_styler) -> str:
-        """Return the HTML page with table having data frame as content."""
-
-        styled_data_frame = data_frame.style.apply(
-            colour_rows_styler, axis=1
-        ).set_table_attributes('class="table table-striped table-bordered table-hover"')
-        table = styled_data_frame.to_html(doctype_html=False, index=False)
-        table = re.sub(r"col_heading", "text-center table-active col_heading", table)
-
-        doc = document(title="Certilizer Report")
-        with doc.head:
-            meta(charset="utf-8")
-            meta(name="generator", content="Certilizer")
-            link(
-                rel="stylesheet",
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css",
-            )
-        doc.body.add(raw(table))
-        return doc.render()
-
-    def _text(self, data_frame) -> str:
-        """Return the text representation of the data frame table."""
-        return tabulate(
-            data_frame, showindex=False, headers="keys", tablefmt=self.out_format
-        )
 
     def _write_output(self, output: str) -> None:
         """Write the output to the file or stdout."""
