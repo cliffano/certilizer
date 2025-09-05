@@ -79,7 +79,7 @@ It will write the log messages to stdout:
     [certilizer] ERROR An error occurred: [Errno -2] Name or service not known
     [certilizer] INFO Retrieving certificate from endpoint someexpired.website:443 ...
     [certilizer] ERROR An error occurred: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid
-    [certilizer] INFO Generating report using simple format...
+    [certilizer] INFO Generating report using text format...
 
 By default, the certificate and error reports are written to stdout:
 
@@ -99,8 +99,6 @@ By default, the certificate and error reports are written to stdout:
 Alternatively, the report format can be customised using `--out-format` flag, and the report can be written to a file using `--out-file` flag:
 
     certilizer --conf-file certilizer.yaml --out-format html --out-file some-certilizer-report.html
-
-The available formats are documented on [python-tabulate Table Format](https://github.com/astanin/python-tabulate#table-format) page. By default, it uses `simple_grid`.
 
 If the `--out-file` arg is not provided, the report will be written to stdout.
 

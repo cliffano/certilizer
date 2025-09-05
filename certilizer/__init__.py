@@ -109,9 +109,9 @@ def run(
 @click.option("--conf-file", default="certilizer.yaml", help="Configuration file path")
 @click.option(
     "--out-format",
-    default="simple",
-    help="Output format, based on table format \
-              supported by python-tabulate https://github.com/astanin/python-tabulate#table-format",
+    type=click.Choice(["text", "html", "json", "yaml"], case_sensitive=False),
+    default="text",
+    help="Output format",
 )
 @click.option("--out-file", help="When specified, output will be written to this file")
 @click.option(

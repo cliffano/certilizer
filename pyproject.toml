@@ -35,6 +35,7 @@ classifiers = [
   conflog = "~2.0.1"
   dominate = "~2.9.1"
   pandas = "~2.3.0"
+  PyYAML = "~6.0.2"
   tabulate = "~0.9.0"
 
 [tool.poetry.group.dev.dependencies]

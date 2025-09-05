@@ -6,4 +6,4 @@ from certilizer import run
 class TestInit(unittest.TestCase):
 
     def test_run_with_config_file(self):
-        run("tests-integration/fixtures/certilizer.yaml", "simple", None, 20, 180)
+        run("tests-integration/fixtures/certilizer.yaml", "text", None, 20, 180)

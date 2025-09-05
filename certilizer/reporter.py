@@ -5,6 +5,8 @@ depending on output configurations.
 import os
 import pandas as pd
 from .formatters.html import format_report as format_html
+from .formatters.json import format_report as format_json
+from .formatters.yaml_ import format_report as format_yaml
 from .formatters.text import format_report as format_text
 
 
@@ -45,10 +47,7 @@ class Reporter:
                 style = ["background-color: LightGreen"] * len(row)
             return style
 
-        if self.out_format == "html":
-            output = format_html(data_frame, _colour_rows_styler)
-        else:
-            output = format_text(data_frame)
+        output = self._format_data(data_frame, _colour_rows_styler)
 
         self._write_output(output)
 
@@ -65,10 +64,7 @@ class Reporter:
         def _colour_rows_styler(row):
             return ["background-color: LightPink"] * len(row)
 
-        if self.out_format == "html":
-            output = format_html(data_frame, _colour_rows_styler)
-        else:
-            output = format_text(data_frame)
+        output = self._format_data(data_frame, _colour_rows_styler)
 
         if self.out_file:
             head, tail = os.path.split(self.out_file)
@@ -76,6 +72,18 @@ class Reporter:
             self.out_file = os.path.join(head, tail)
 
         self._write_output(output)
+
+    def _format_data(self, data_frame, colour_rows_styler) -> str:
+        """Format the data frame based on the output format."""
+        if self.out_format == "html":
+            output = format_html(data_frame, colour_rows_styler)
+        elif self.out_format == "json":
+            output = format_json(data_frame)
+        elif self.out_format == "yaml":
+            output = format_yaml(data_frame)
+        else:
+            output = format_text(data_frame)
+        return output
 
     def _write_output(self, output: str) -> None:
         """Write the output to the file or stdout."""
