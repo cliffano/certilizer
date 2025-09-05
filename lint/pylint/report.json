@@ -53,7 +53,7 @@
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 46,
+        "statement": 53,
         "warning": 0
       },
       "certilizer.__init__": {
@@ -63,6 +63,24 @@
         "info": 0,
         "refactor": 0,
         "statement": 55,
+        "warning": 0
+      },
+      "yaml_": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 3,
+        "warning": 0
+      },
+      "json": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 2,
         "warning": 0
       },
       "html": {
@@ -120,7 +138,7 @@
         "warning": 0
       }
     },
-    "statement": 196,
+    "statement": 208,
     "error": 0,
     "warning": 0,
     "refactor": 0,
