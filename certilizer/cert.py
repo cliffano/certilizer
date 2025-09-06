@@ -52,7 +52,7 @@ class Cert:
                 alt_name = item[1]
                 alt_names.append(alt_name)
 
-        return ", ".join(alt_names)
+        return ", ".join(alt_names) if alt_names else None
 
     def get_issuer(self) -> str:
         """Return the certificate's issuer.
