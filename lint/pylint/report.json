@@ -29,13 +29,13 @@
         "statement": 0,
         "warning": 0
       },
-      "certilizer.cert": {
+      "certilizer.reporter": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 52,
+        "statement": 53,
         "warning": 0
       },
       "certilizer.logger": {
@@ -47,13 +47,13 @@
         "statement": 4,
         "warning": 0
       },
-      "certilizer.reporter": {
+      "certilizer.cert": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 53,
+        "statement": 52,
         "warning": 0
       },
       "certilizer.__init__": {
@@ -83,15 +83,6 @@
         "statement": 2,
         "warning": 0
       },
-      "html": {
-        "convention": 0,
-        "error": 0,
-        "fatal": 0,
-        "info": 0,
-        "refactor": 0,
-        "statement": 15,
-        "warning": 0
-      },
       "text": {
         "convention": 0,
         "error": 0,
@@ -101,13 +92,22 @@
         "statement": 3,
         "warning": 0
       },
-      "tests.__init__": {
+      "html": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 0,
+        "statement": 15,
+        "warning": 0
+      },
+      "tests.test_cert": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 24,
         "warning": 0
       },
       "tests.test_logger": {
@@ -119,13 +119,13 @@
         "statement": 7,
         "warning": 0
       },
-      "tests.test_cert": {
+      "tests.__init__": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 24,
+        "statement": 0,
         "warning": 0
       },
       "tests-integration.test_init": {
