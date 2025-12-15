@@ -127,7 +127,7 @@ Colophon
 Build reports:
 
 * [Lint report](https://cliffano.github.io/certilizer/lint/pylint/index.html)
-* [Code complexity report](https://cliffano.github.io/certilizer/complexity/wily/index.html)
+* [Code complexity report](https://cliffano.github.io/certilizer/complexity/radon/cc.txt)
 * [Unit tests report](https://cliffano.github.io/certilizer/test/pytest/index.html)
 * [Test coverage report](https://cliffano.github.io/certilizer/coverage/coverage/index.html)
 * [Integration tests report](https://cliffano.github.io/certilizer/test-integration/pytest/index.html)
