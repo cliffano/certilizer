@@ -1,8 +1,0 @@
-certilizer/reporter.py - A
-certilizer/logger.py - A
-certilizer/cert.py - A
-certilizer/__init__.py - A
-certilizer/formatters/yaml_.py - A
-certilizer/formatters/json.py - A
-certilizer/formatters/text.py - A
-certilizer/formatters/html.py - A
