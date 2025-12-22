@@ -2,17 +2,11 @@ certilizer/reporter.py - A
 certilizer/logger.py - A
 certilizer/cert.py - A
 certilizer/__init__.py - A
-certilizer/formatters/yaml_.py - A
-certilizer/formatters/json.py - A
-certilizer/formatters/text.py - A
-certilizer/formatters/html.py - A
 certilizer/reporter.py
-    C 13:0 Reporter - A (4)
-    M 54:4 Reporter.write_error - A (4)
-    M 76:4 Reporter._format_data - A (4)
-    M 29:4 Reporter.write_cert - A (3)
-    M 88:4 Reporter._write_output - A (2)
-    M 16:4 Reporter.__init__ - A (1)
+    C 10:0 Reporter - A (2)
+    M 55:4 Reporter.write_error - A (2)
+    M 13:4 Reporter.__init__ - A (1)
+    M 26:4 Reporter.write_cert - A (1)
 certilizer/logger.py
     F 6:0 init - A (1)
 certilizer/cert.py
@@ -29,14 +23,6 @@ certilizer/cert.py
 certilizer/__init__.py
     F 21:0 run - B (6)
     F 126:0 cli - A (1)
-certilizer/formatters/yaml_.py
-    F 6:0 format_report - A (1)
-certilizer/formatters/json.py
-    F 4:0 format_report - A (1)
-certilizer/formatters/text.py
-    F 6:0 format_report - A (1)
-certilizer/formatters/html.py
-    F 9:0 format_report - A (1)
 
-23 blocks (classes, functions, methods) analyzed.
-Average complexity: A (2.260869565217391)
+17 blocks (classes, functions, methods) analyzed.
+Average complexity: A (2.1176470588235294)

@@ -1,5 +1,5 @@
 .. certilizer documentation master file, created by
-   sphinx-quickstart on Wed Dec 17 03:32:16 2025.
+   sphinx-quickstart on Mon Dec 22 04:10:35 2025.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
