@@ -1,0 +1,86 @@
+[
+  {
+    "Name":"Facebook",
+    "Endpoint":"facebook.com:443",
+    "Serial Number":"0DDB92187FCE7567449EF61C9628140B",
+    "Common Name":"*.facebook.com",
+    "Alternative Names":"*.facebook.com, *.facebook.net, *.fbcdn.net, *.fbsbx.com, *.m.facebook.com, *.messenger.com, *.xx.fb",
+    "Issuer":"DigiCert Inc (US) - DigiCert Global G2 TLS RSA SHA256 2020 CA1",
+    "Expiry Date":1767052799000,
+    "OCSP":"http:\/\/ocsp.digicert.com",
+    "CA Issuer":"http:\/\/cacerts.digicert.com\/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt",
+    "CRL Dist Points":"http:\/\/crl3.digicert.com\/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crl, http:\/\/crl4.digicert.com\/DigiCer"
+  },
+  {
+    "Name":"Apple",
+    "Endpoint":"apple.com:443",
+    "Serial Number":"3B983CAF5477B941342653A584074CBD",
+    "Common Name":"apple.com",
+    "Alternative Names":"apple.com",
+    "Issuer":"Apple Inc. (US) - Apple Public EV Server ECC CA 1 - G1",
+    "Expiry Date":1770753015000,
+    "OCSP":"http:\/\/ocsp.apple.com\/ocsp03-apevsecc1g101",
+    "CA Issuer":"http:\/\/certs.apple.com\/apevsecc1g1.der",
+    "CRL Dist Points":"http:\/\/crl.apple.com\/apevsecc1g1.crl"
+  },
+  {
+    "Name":"Google",
+    "Endpoint":"google.com:443",
+    "Serial Number":"56C74F44A4CE9B190AD981A4FC39C286",
+    "Common Name":"*.google.com",
+    "Alternative Names":"*.google.com, *.appengine.google.com, *.bdn.dev, *.origin-test.bdn.dev, *.cloud.google.com, *.crowds",
+    "Issuer":"Google Trust Services (US) - WR2",
+    "Expiry Date":1772034566000,
+    "OCSP":"http:\/\/o.pki.goog\/wr2",
+    "CA Issuer":"http:\/\/i.pki.goog\/wr2.crt",
+    "CRL Dist Points":"http:\/\/c.pki.goog\/wr2\/oBFYYahzgVI.crl"
+  },
+  {
+    "Name":"Twitter",
+    "Endpoint":"twitter.com:443",
+    "Serial Number":"068C34B191CE05C5AE13E17A3CE5A7CE4338",
+    "Common Name":"x.com",
+    "Alternative Names":"*.twitter.com, *.twitterintegration.com, *.x.com, t.co, twitter.com, x.com",
+    "Issuer":"Let's Encrypt (US) - R12",
+    "Expiry Date":1773025560000,
+    "OCSP":"",
+    "CA Issuer":"http:\/\/r12.i.lencr.org\/",
+    "CRL Dist Points":"http:\/\/r12.c.lencr.org\/57.crl"
+  },
+  {
+    "Name":"Microsoft",
+    "Endpoint":"microsoft.com:443",
+    "Serial Number":"3302C2A5DE9870E811EBC507D4000002C2A5DE",
+    "Common Name":"microsoft.com",
+    "Alternative Names":"microsoft.com, s.microsoft.com, ga.microsoft.com, aep.microsoft.com, aer.microsoft.com, grv.microsof",
+    "Issuer":"Microsoft Corporation (US) - Microsoft Azure RSA TLS Issuing CA 08",
+    "Expiry Date":1780784554000,
+    "OCSP":"http:\/\/oneocsp.microsoft.com\/ocsp",
+    "CA Issuer":"http:\/\/www.microsoft.com\/pkiops\/certs\/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2008%20-%20xsign.",
+    "CRL Dist Points":"http:\/\/www.microsoft.com\/pkiops\/crl\/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2008.crl"
+  },
+  {
+    "Name":"Nvidia",
+    "Endpoint":"nvidia.com:443",
+    "Serial Number":"098C0542187A5A615444FE013230EBBF",
+    "Common Name":"nvidia.com",
+    "Alternative Names":"nvidia.com, *.nvidia.ae, *.nvidia.trade, *.nvidia.world, *.nvidia.video, *.nvidia.luxe, *.nvidia.ema",
+    "Issuer":"Amazon (US) - Amazon RSA 2048 M03",
+    "Expiry Date":1781827199000,
+    "OCSP":"http:\/\/ocsp.r2m03.amazontrust.com",
+    "CA Issuer":"http:\/\/crt.r2m03.amazontrust.com\/r2m03.cer",
+    "CRL Dist Points":"http:\/\/crl.r2m03.amazontrust.com\/r2m03.crl"
+  },
+  {
+    "Name":"Amazon",
+    "Endpoint":"amazon.com:443",
+    "Serial Number":"0109614C77EC09EA900F923281C688CB",
+    "Common Name":"*.peg.a2z.com",
+    "Alternative Names":"amazon.co.uk, uedata.amazon.co.uk, www.amazon.co.uk, origin-www.amazon.co.uk, *.peg.a2z.com, amazon.",
+    "Issuer":"DigiCert Inc (US) - DigiCert Global CA G2",
+    "Expiry Date":1790035199000,
+    "OCSP":"http:\/\/ocsp.digicert.com",
+    "CA Issuer":"http:\/\/cacerts.digicert.com\/DigiCertGlobalCAG2.crt",
+    "CRL Dist Points":"http:\/\/crl3.digicert.com\/DigiCertGlobalCAG2.crl, http:\/\/crl4.digicert.com\/DigiCertGlobalCAG2.crl"
+  }
+]

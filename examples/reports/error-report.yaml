@@ -1,0 +1,6 @@
+- Endpoint: someinexisting.website:443
+  Error: '[Errno -2] Name or service not known'
+  Name: Inexisting
+- Endpoint: someexpired.website:443
+  Error: '[Errno -2] Name or service not known'
+  Name: Expired

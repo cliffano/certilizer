@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add Python 3.14 support
+- Add report examples
 
 ### Changed
 - No alternative names results in None instead of empty string
