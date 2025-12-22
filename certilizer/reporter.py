@@ -3,11 +3,8 @@ depending on output configurations.
 """
 
 import os
+from pandasreporter import PandasReporter
 import pandas as pd
-from .formatters.html import format_report as format_html
-from .formatters.json import format_report as format_json
-from .formatters.yaml_ import format_report as format_yaml
-from .formatters.text import format_report as format_text
 
 
 class Reporter:
@@ -29,13 +26,6 @@ class Reporter:
     def write_cert(self, cert_data: list) -> None:
         """Write the errors to the output file or stdout."""
 
-        data_frame = pd.DataFrame(cert_data).sort_values(by=["Expiry Date"])
-
-        if self.max_col_size:
-            data_frame = data_frame.map(
-                lambda x: x[0 : self.max_col_size] if isinstance(x, str) else x
-            )
-
         def _colour_rows_styler(row):
             today = pd.Timestamp.today()
             threshold_date = today + pd.DateOffset(days=self.expiry_threshold_in_days)
@@ -47,48 +37,43 @@ class Reporter:
                 style = ["background-color: LightGreen"] * len(row)
             return style
 
-        output = self._format_data(data_frame, _colour_rows_styler)
+        data_frame = pd.DataFrame(cert_data).sort_values(by=["Expiry Date"])
 
-        self._write_output(output)
+        reporter = PandasReporter()
+        reporter.report(
+            data_frame,
+            self.out_format,
+            {
+                "max_col_size": self.max_col_size,
+                "out_file": self.out_file,
+                "rows_styler": _colour_rows_styler,
+                "title": "Certificate Expiry Report",
+                "generator": "Certilizer",
+            },
+        )
 
     def write_error(self, error_data: list) -> None:
         """Write the errors to the output file or stdout."""
 
-        data_frame = pd.DataFrame(error_data)
-
-        if self.max_col_size:
-            data_frame = data_frame.map(
-                lambda x: x[0 : self.max_col_size] if isinstance(x, str) else x
-            )
-
         def _colour_rows_styler(row):
             return ["background-color: LightPink"] * len(row)
-
-        output = self._format_data(data_frame, _colour_rows_styler)
 
         if self.out_file:
             head, tail = os.path.split(self.out_file)
             tail = f"error-{tail}"
             self.out_file = os.path.join(head, tail)
 
-        self._write_output(output)
+        data_frame = pd.DataFrame(error_data)
 
-    def _format_data(self, data_frame, colour_rows_styler) -> str:
-        """Format the data frame based on the output format."""
-        if self.out_format == "html":
-            output = format_html(data_frame, colour_rows_styler)
-        elif self.out_format == "json":
-            output = format_json(data_frame)
-        elif self.out_format == "yaml":
-            output = format_yaml(data_frame)
-        else:
-            output = format_text(data_frame)
-        return output
-
-    def _write_output(self, output: str) -> None:
-        """Write the output to the file or stdout."""
-        if self.out_file:
-            with open(self.out_file, "w", encoding="utf-8") as (stream):
-                stream.write(output)
-        else:
-            print(output)
+        reporter = PandasReporter()
+        reporter.report(
+            data_frame,
+            self.out_format,
+            {
+                "max_col_size": self.max_col_size,
+                "out_file": self.out_file,
+                "rows_styler": _colour_rows_styler,
+                "title": "Certificate Expiry Error Report",
+                "generator": "Certilizer",
+            },
+        )

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - No alternative names results in None instead of empty string
 - Upgrade PieMaker to 2.0.0
+- Switch report generation to use pandasreporter
 
 ## 1.2.0 - 2025-09-05
 ### Added
