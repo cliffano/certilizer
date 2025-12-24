@@ -1,8 +1,8 @@
 <img align="right" src="https://raw.github.com/cliffano/certilizer/main/avatar.jpg" alt="Avatar"/>
 
 [![Build Status](https://github.com/cliffano/certilizer/workflows/CI/badge.svg)](https://github.com/cliffano/certilizer/actions?query=workflow%3ACI)
-[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/certilizer)](https://libraries.io/pypi/certilizer)
 [![Code Scanning Status](https://github.com/cliffano/certilizer/workflows/CodeQL/badge.svg)](https://github.com/cliffano/certilizer/actions?query=workflow%3ACodeQL)
+[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/certilizer)](https://libraries.io/pypi/certilizer)
 [![Security Status](https://snyk.io/test/github/cliffano/certilizer/badge.svg)](https://snyk.io/test/github/cliffano/certilizer)
 [![Published Version](https://img.shields.io/pypi/v/certilizer.svg)](https://pypi.python.org/pypi/certilizer)
 <br/>
