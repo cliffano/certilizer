@@ -106,6 +106,71 @@ The threshold for expiry date can be configured using `--expiry-threshold-in-day
 
 The column size can be set via `--max-col-size` flag which will determine how many characters will be included for each of the column values.
 
+The certificate report can also be formatted in JSON or YAML, which is useful for further processing need.
+
+JSON:
+
+    [
+      {
+        "Name":"Facebook",
+        "Endpoint":"facebook.com:443",
+        "Serial Number":"0DDB92187FCE7567449EF61C9628140B",
+        "Common Name":"*.facebook.com",
+        "Alternative Names":"*.facebook.com, *.facebook.net, *.fbcdn.net, *.fbsbx.com, *.m.facebook.com, *.messenger.com, *.xx.fb",
+        "Issuer":"DigiCert Inc (US) - DigiCert Global G2 TLS RSA SHA256 2020 CA1",
+        "Expiry Date":1767052799000,
+        "OCSP":"http:\/\/ocsp.digicert.com",
+        "CA Issuer":"http:\/\/cacerts.digicert.com\/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt",
+        "CRL Dist Points":"http:\/\/crl3.digicert.com\/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crl, http:\/\/crl4.digicert.com\/DigiCer"
+      },
+      {
+        "Name":"Apple",
+        "Endpoint":"apple.com:443",
+        "Serial Number":"3B983CAF5477B941342653A584074CBD",
+        "Common Name":"apple.com",
+        "Alternative Names":"apple.com",
+        "Issuer":"Apple Inc. (US) - Apple Public EV Server ECC CA 1 - G1",
+        "Expiry Date":1770753015000,
+        "OCSP":"http:\/\/ocsp.apple.com\/ocsp03-apevsecc1g101",
+        "CA Issuer":"http:\/\/certs.apple.com\/apevsecc1g1.der",
+        "CRL Dist Points":"http:\/\/crl.apple.com\/apevsecc1g1.crl"
+      },
+      ...
+    ]
+
+YAML:
+
+    - Alternative Names: '*.facebook.com, *.facebook.net, *.fbcdn.net, *.fbsbx.com, *.m.facebook.com,
+        *.messenger.com, *.xx.fb'
+      CA Issuer: http://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt
+      CRL Dist Points: http://crl3.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crl,
+        http://crl4.digicert.com/DigiCer
+      Common Name: '*.facebook.com'
+      Endpoint: facebook.com:443
+      Expiry Date: !!python/object/apply:pandas._libs.tslibs.timestamps._unpickle_timestamp
+      - 1767052799000000000
+      - null
+      - null
+      - 10
+      Issuer: DigiCert Inc (US) - DigiCert Global G2 TLS RSA SHA256 2020 CA1
+      Name: Facebook
+      OCSP: http://ocsp.digicert.com
+      Serial Number: 0DDB92187FCE7567449EF61C9628140B
+    - Alternative Names: apple.com
+      CA Issuer: http://certs.apple.com/apevsecc1g1.der
+      CRL Dist Points: http://crl.apple.com/apevsecc1g1.crl
+      Common Name: apple.com
+      Endpoint: apple.com:443
+      Expiry Date: !!python/object/apply:pandas._libs.tslibs.timestamps._unpickle_timestamp
+      - 1770753015000000000
+      - null
+      - null
+      - 10
+      Issuer: Apple Inc. (US) - Apple Public EV Server ECC CA 1 - G1
+      Name: Apple
+      OCSP: http://ocsp.apple.com/ocsp03-apevsecc1g101
+      Serial Number: 3B983CAF5477B941342653A584074CBD
+
 Configuration
 -------------
 
