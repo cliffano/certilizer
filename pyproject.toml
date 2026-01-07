@@ -34,7 +34,7 @@ classifiers = [
   click = "~8.3.1"
   conflog = "~2.1.0"
   pandas = "~2.3.3"
-  pandasreporter = "~0.10.0"
+  pandasreporter = "~1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "~25.12.0"
