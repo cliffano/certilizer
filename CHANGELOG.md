@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add more unit and integration tests for higher coverage
+
 ### Fixed
 - Fix deprecated data frame applymap warning
 - Fix complexity report link
