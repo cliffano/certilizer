@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals
+# pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals,unused-variable
 import os
 import unittest
 from unittest.mock import MagicMock, patch
@@ -60,7 +60,9 @@ class TestReporter(unittest.TestCase):
         args, kwargs = mock_report.report.call_args
         options = args[2]
 
-        self.assertEqual(options["out_file"], os.path.join("/tmp", "error-somereport.html"))
+        self.assertEqual(
+            options["out_file"], os.path.join("/tmp", "error-somereport.html")
+        )
         self.assertEqual(options["title"], "Certificate Expiry Error Report")
         self.assertEqual(options["generator"], "Certilizer")
         self.assertTrue(callable(options["rows_styler"]))

@@ -88,7 +88,14 @@ class TestCert(unittest.TestCase):
             cert.get_ca_issuer()
 
     def test_get_crl_dist_points_when_points_exist(self):
-        cert = Cert({"crlDistributionPoints": ["http://crl1.example.com", "http://crl2.example.com"]})
+        cert = Cert(
+            {
+                "crlDistributionPoints": [
+                    "http://crl1.example.com",
+                    "http://crl2.example.com",
+                ]
+            }
+        )
         self.assertEqual(
             cert.get_crl_dist_points(),
             "http://crl1.example.com, http://crl2.example.com",

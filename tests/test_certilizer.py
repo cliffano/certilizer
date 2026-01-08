@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals
+# pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals,too-many-arguments,too-many-positional-arguments
 from datetime import datetime
 from unittest.mock import patch, call, MagicMock
 import unittest
@@ -100,7 +100,6 @@ class TestCertilizer(unittest.TestCase):
         mock_reporter.write_error.assert_not_called()
 
     @patch("certilizer.Reporter")
-    @patch("certilizer.Cert")
     @patch("certilizer.socket.create_connection")
     @patch("certilizer.ssl.create_default_context")
     @patch("certilizer.CFGRW")
@@ -111,7 +110,6 @@ class TestCertilizer(unittest.TestCase):
         func_cfgrw,
         func_create_default_context,
         func_create_connection,
-        func_cert,
         func_reporter,
     ):
 
@@ -119,9 +117,7 @@ class TestCertilizer(unittest.TestCase):
         func_init.return_value = mock_logger
 
         func_cfgrw.return_value.read.return_value = {
-            "endpoints": [
-                {"name": "example", "host": "example.com", "port": 443}
-            ]
+            "endpoints": [{"name": "example", "host": "example.com", "port": 443}]
         }
 
         mock_context = MagicMock()
@@ -153,9 +149,7 @@ class TestCertilizer(unittest.TestCase):
                 call("Generating report using html format..."),
             ]
         )
-        mock_logger.error.assert_has_calls(
-            [call("An error occurred: ssl failure")]
-        )
+        mock_logger.error.assert_has_calls([call("An error occurred: ssl failure")])
 
         func_reporter.assert_called_once_with("html", "report.html", 50, 30)
         mock_reporter.write_cert.assert_called_once()
