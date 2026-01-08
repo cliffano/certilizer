@@ -6,7 +6,7 @@ from click.testing import CliRunner
 from certilizer import cli
 
 
-class TestInit(unittest.TestCase):
+class TestCli(unittest.TestCase):
 
     @patch("certilizer.run")
     def test_cli_help(self, func_run):
