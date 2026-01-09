@@ -1,5 +1,6 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals,too-many-arguments,too-many-positional-arguments
 from datetime import datetime
+import ssl
 from unittest.mock import patch, call, MagicMock
 import unittest
 
@@ -97,6 +98,75 @@ class TestCertilizer(unittest.TestCase):
                 "CRL Dist Points": ["crl-dist"],
             }
         )
+        mock_reporter.write_error.assert_not_called()
+
+    @patch("certilizer.Reporter")
+    @patch("certilizer.Cert")
+    @patch("certilizer.socket.create_connection")
+    @patch("certilizer.ssl.create_default_context")
+    @patch("certilizer.CFGRW")
+    @patch("certilizer.init")
+    def test_run_with_false_ssl_verify(
+        self,
+        func_init,
+        func_cfgrw,
+        func_create_default_context,
+        func_create_connection,
+        func_cert,
+        func_reporter,
+    ):
+
+        mock_logger = MagicMock()
+        func_init.return_value = mock_logger
+
+        func_cfgrw.return_value.read.return_value = {
+            "endpoints": [
+                {
+                    "name": "example",
+                    "host": "example.com",
+                    "port": 443,
+                    "ssl_verify": False,
+                }
+            ]
+        }
+
+        mock_context = MagicMock()
+        func_create_default_context.return_value = mock_context
+
+        mock_socket = MagicMock()
+        mock_socket.__enter__.return_value = mock_socket
+        func_create_connection.return_value = mock_socket
+
+        mock_ssock = MagicMock()
+        mock_ssock.__enter__.return_value = mock_ssock
+        mock_ssock.getpeercert.return_value = {"serialNumber": "raw"}
+        mock_context.wrap_socket.return_value = mock_ssock
+
+        expiry_date = datetime(2030, 1, 1, 12, 0, 0)
+        func_cert.return_value.get_serial_number.return_value = "serial"
+        func_cert.return_value.get_common_name.return_value = "common-name"
+        func_cert.return_value.get_alternative_names.return_value = "alt-names"
+        func_cert.return_value.get_issuer.return_value = "issuer"
+        func_cert.return_value.get_expiry_date.return_value = expiry_date
+        func_cert.return_value.get_ocsp.return_value = "ocsp"
+        func_cert.return_value.get_ca_issuer.return_value = "ca-issuer"
+        func_cert.return_value.get_crl_dist_points.return_value = "crl-dist"
+
+        mock_reporter = MagicMock()
+        func_reporter.return_value = mock_reporter
+
+        run(
+            conf_file="certilizer.yaml",
+            out_format="text",
+            out_file=None,
+            max_col_size=100,
+            expiry_threshold_in_days=90,
+        )
+
+        self.assertFalse(mock_context.check_hostname)
+        self.assertEqual(mock_context.verify_mode, ssl.CERT_NONE)
+
+        func_reporter.assert_called_once_with("text", None, 100, 90)
         mock_reporter.write_error.assert_not_called()
 
     @patch("certilizer.Reporter")
