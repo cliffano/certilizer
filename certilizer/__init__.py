@@ -89,9 +89,6 @@ def run(
                     cert_data["CA Issuer"].append(cert.get_ca_issuer())
                     cert_data["CRL Dist Points"].append(cert.get_crl_dist_points())
 
-        except KeyboardInterrupt:
-            logger.info("Keyboard interrupt detected")
-
         except Exception as exception:
             logger.error(f"An error occurred: {exception}")
             error_data["Name"].append(endpoint["name"])
