@@ -1,3 +1,13 @@
 ---
 author: Cliffano Subagio
 package_name: certilizer
+generator:
+  component: python-cli
+  inputs:
+    project_id: certilizer
+    project_name: Certilizer
+    project_desc: Python CLI for generating report of SSL/TLS certificates from multiple endpoints specified in a YAML configuration
+    author_name: Cliffano Subagio
+    author_email: cliffano@gmail.com
+    github_id: cliffano
+    github_repo: certilizer
