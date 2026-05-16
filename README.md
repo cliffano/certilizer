@@ -1,14 +1,12 @@
-<img align="right" src="https://raw.github.com/cliffano/certilizer/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/cliffano/certilizer/workflows/CI/badge.svg)](https://github.com/cliffano/certilizer/actions?query=workflow%3ACI)
 [![Code Scanning Status](https://github.com/cliffano/certilizer/workflows/CodeQL/badge.svg)](https://github.com/cliffano/certilizer/actions?query=workflow%3ACodeQL)
 [![Dependencies Status](https://img.shields.io/librariesio/release/pypi/certilizer)](https://libraries.io/pypi/certilizer)
 [![Security Status](https://snyk.io/test/github/cliffano/certilizer/badge.svg)](https://snyk.io/test/github/cliffano/certilizer)
 [![Published Version](https://img.shields.io/pypi/v/certilizer.svg)](https://pypi.python.org/pypi/certilizer)
-<br/>
 
-Certilizer
-----------
+# Certilizer
 
 Certilizer is a Python CLI for generating report of SSL/TLS certificates from multiple endpoints specified in a YAML configuration.
 
@@ -20,13 +18,11 @@ Any error with certificates inspection will be included in an error report and h
 
 ![Screenshot of error report in HTML format](/screenshots/error-report-html.png "Error report in HTML format")
 
-Installation
-------------
+## Installation
 
     pip3 install certilizer
 
-Usage
------
+## Usage
 
 Create a configuration file, e.g. `certilizer.yaml`:
 
@@ -171,8 +167,7 @@ YAML:
       OCSP: http://ocsp.apple.com/ocsp03-apevsecc1g101
       Serial Number: 3B983CAF5477B941342653A584074CBD
 
-Configuration
--------------
+## Configuration
 
 Configuration properties that should be added to the YAML configuration file:
 
@@ -184,8 +179,7 @@ Configuration properties that should be added to the YAML configuration file:
 | `endpoints[].port` | Int | The cert endpoint port number. | `443` |
 | `endpoints[].ssl_verify` | String | Verify SSL when set to true. | `true` |
 
-Colophon
---------
+## Colophon
 
 [Developer's Guide](https://cliffano.github.io/developers_guide.html#python)
 
