@@ -9,6 +9,7 @@ This library provides a CLI tool to generate a report of SSL/TLS certificate's
 details (serial number, common name, alternative names, issuer, expiry date,
 OCSP, CA issuer, CRL distribution points), retrieved directly from an endpoint.
 """
+
 import ssl
 import socket
 import click
